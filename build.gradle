@@ -13,15 +13,23 @@ plugins {
 repositories {
     mavenLocal()
     maven {
-        url = uri('https://repo.spring.io/snapshot')
+        url = 'https://maven.uqbar.org/releases'
     }
 
     maven {
-        url = uri('https://repo.spring.io/milestone')
+        url = 'https://maven.uqbar.org/snapshots'
     }
 
     maven {
-        url = uri('https://repo.maven.apache.org/maven2/')
+        url = 'https://repo.spring.io/snapshot'
+    }
+
+    maven {
+        url = 'https://repo.spring.io/milestone'
+    }
+
+    maven {
+        url = 'https://repo.maven.apache.org/maven2'
     }
 }
 
@@ -69,5 +77,9 @@ test {
 }
 
 jacocoTestReport{
+    reports {
+        xml.enabled false
+        csv.enabled false
+    }
     executionData = files('build/jacoco/test.exec')
 }
