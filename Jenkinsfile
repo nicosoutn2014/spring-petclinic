@@ -1,52 +1,42 @@
 pipeline {
     agent any
 
-    //tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        //maven "M3"
-    //}
-
     stages {
         stage('Build') {
             steps {
                 // Get some code from a GitHub repository
-                git 'https://github.com/gabriell24/six-temas.git'
+                git 'https://github.com/nicosoutn2014/spring-petclinic.git'
 
-                //sh "chmod +x gradlew" ya lo hice en git
-                sh "./gradlew build"
-
-                // To run Maven on a Windows agent, use
-                // bat "mvn -Dmaven.test.failure.ignore=true clean package"
+                sh 'chmod +x gradlew'
+                sh './gradlew build'
             }
         }
 
-        stage("Test") {
+        stage('Test') {
             steps {
-                // ejecutar con gradle la batería de pruebas y generar un reporte de resultado de las mismas
-                sh "./gradlew test"
+                sh './gradlew test'
             }
         }
 
-        stage("Validate") {
+        stage('Validate') {
             steps {
-                sh "./gradlew check"
+                sh './gradlew check'
             }
         }
 
-        stage("Analyze") {
+        stage('Analyze') {
             steps {
-                // esta preparado para docker
-                sh "./gradlew sonarqube -Dsonar.host.url=http://sonarqube:9000"
-                // Step JaCoCo
-                sh "./gradlew -i test jacocoTestReport"
+                // corre en docker
+                sh './gradlew sonarqube -Dsonar.host.url=http://sonarqube:9000'
+                // jacoco
+                sh './gradlew -i test jacocoTestReport'
             }
         }
 
-        stage("Deploy") {
+        stage('Deploy') {
             steps {
-                //sh "chmod +x mvnw" ya lo hice en git
-                sh "./mvnw spring-boot:run"
-                // acá habría que settear las credenciales de heroku, y subir el war
+                sh 'chmod +x mvnw'
+                sh './mvnw spring-boot:run'
             }
         }
     }
