@@ -62,3 +62,16 @@ publishing {
 tasks.withType(JavaCompile) {
     options.encoding = 'UTF-8'
 }
+
+test {
+    useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport{
+    reports {
+        xml.enabled false
+        csv.enabled false
+    }
+    executionData = files('build/jacoco/test.exec')
+}
