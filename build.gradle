@@ -69,5 +69,5 @@ test {
 }
 
 jacocoTestReport{
-    getExecutionData = files('build/jacoco/test.exec')
+    executionData = files('build/jacoco/test.exec')
 }
