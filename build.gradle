@@ -5,7 +5,9 @@
 plugins {
     id 'java'
     id 'maven-publish'
-	id 'org.springframework.boot' version '2.1.9.RELEASE'
+    id 'org.springframework.boot' version '2.1.9.RELEASE'
+    id "org.sonarqube" version "3.0"
+    id "jacoco"
 }
 
 repositories {
