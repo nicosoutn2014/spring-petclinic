@@ -36,7 +36,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'chmod +x mvnw'
-                sh './mvnw spring-boot:run'
+                sh './mvnw spring-boot:run -Dcheckstyle.skip'
             }
         }
     }
