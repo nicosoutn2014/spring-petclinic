@@ -36,6 +36,7 @@ pipeline {
         stage('Deploy') {
             steps {
                 sh 'chmod +x mvnw'
+                //se quitó el checkstyle porque molestaba por unas requests http que habia
                 sh './mvnw spring-boot:run -Dcheckstyle.skip'
             }
         }
