@@ -81,5 +81,5 @@ jacocoTestReport{
         xml.enabled true
         csv.enabled false
     }
-    executionData = files('build/jacoco/test.exec')
+    executionData fileTree(buildDir).include("/jacoco/*.exec")
 }
